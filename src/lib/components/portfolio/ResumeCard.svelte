@@ -8,7 +8,7 @@
 	export let logoUrl: string = '';
 	export let company: string = '';
 	export let title: string = '';
-	export let subtitle: string = '';
+	export const subtitle: string = '';
 	export let href: string = '';
 	export let badges: string[]=[''];
 	export let description: string = '';

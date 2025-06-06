@@ -3,7 +3,8 @@
 	import BlurFade from '$lib/components/magic/BlurFade.svelte';
 
 	export let data;
-	let BLUR_FADE_DELAY = 0.04;
+	// let BLUR_FADE_DELAY = 0.04;
+	let BLUR_FADE_DELAY = 1;
 	
 </script>
 
