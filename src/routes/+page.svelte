@@ -1,4 +1,3 @@
-
 <script>
 	import BlurFade from '$lib/components/magic/BlurFade.svelte';
 	import HackathonCard from '$lib/components/portfolio/HackathonCard.svelte';
@@ -8,8 +7,72 @@
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import { DATA } from '$lib/data/resume';
 	import { marked } from 'marked';
+	import { gsap } from 'gsap';
+	import { onMount } from 'svelte';
+	
 	// let BLUR_FADE_DELAY = .5;
-	let BLUR_FADE_DELAY = 1;
+	let BLUR_FADE_DELAY = 0;
+	let avatarRef;
+	let floatingTween;
+	
+	onMount(() => {
+		// Start the floating animation
+		floatingTween = gsap.to(avatarRef, {
+			scale: 1.03,
+			duration: 3,
+			ease: "power1.inOut",
+			yoyo: true, 
+			repeat: -1
+		});
+		
+		// Magnetic hover effect
+		const handleMouseMove = (e) => {
+			const rect = avatarRef.getBoundingClientRect();
+			const centerX = rect.left + rect.width / 2;
+			const centerY = rect.top + rect.height / 2;
+			
+			const deltaX = (e.clientX - centerX) * 0.15;
+			const deltaY = (e.clientY - centerY) * 0.15;
+			
+			// Pause floating and apply magnetic effect
+			floatingTween.pause();
+			gsap.to(avatarRef, {
+				x: deltaX,
+				y: deltaY,
+				duration: 0.3,
+				ease: "power2.out"
+			});
+		};
+		
+		const handleMouseLeave = () => {
+			// Return to original position and resume floating
+			gsap.to(avatarRef, {
+				x: 0,
+				y: 0,
+				duration: 0.5,
+				ease: "elastic.out(1, 0.3)",
+				onComplete: () => {
+					floatingTween.resume();
+				}
+			});
+		};
+		
+		const handleMouseEnter = () => {
+			// Pause floating when hovering starts
+			floatingTween.pause();
+		};
+		
+		avatarRef.addEventListener('mouseenter', handleMouseEnter);
+		avatarRef.addEventListener('mousemove', handleMouseMove);
+		avatarRef.addEventListener('mouseleave', handleMouseLeave);
+		
+		return () => {
+			avatarRef.removeEventListener('mouseenter', handleMouseEnter);
+			avatarRef.removeEventListener('mousemove', handleMouseMove);
+			avatarRef.removeEventListener('mouseleave', handleMouseLeave);
+			floatingTween.kill();
+		};
+	});
 </script>
 
 <svelte:head>
@@ -43,18 +106,19 @@
 					<BlurFade
 						delay={BLUR_FADE_DELAY}
 						class="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-						yOffset={8}>Hi, I'm d! 👋</BlurFade
+						yOffset={8}>Hi, I'm Dwayne!😊</BlurFade
 					>
 					<BlurFade class="max-w-[600px] md:text-xl" delay={BLUR_FADE_DELAY}
-						>Software Engineer turned Entrepreneur. I love building things and helping people. Very
-						active on Twitter.</BlurFade
+						>Creative, Engineer, Humanist. I love building things and helping people. Fairly active on BlueSky.</BlurFade
 					>
 				</div>
 				<BlurFade delay={BLUR_FADE_DELAY}>
-					<Avatar.Root class="size-28 border">
-						<Avatar.Image alt={DATA.name} src={DATA.avatarUrl} />
-						<Avatar.Fallback>{DATA.initials}</Avatar.Fallback>
-					</Avatar.Root>
+					<div bind:this={avatarRef} class="cursor-pointer">
+						<Avatar.Root class="size-36 border transition-all duration-300 hover:scale-105">
+							<Avatar.Image alt={DATA.name} src={DATA.avatarUrl} />
+							<Avatar.Fallback>{DATA.initials}</Avatar.Fallback>
+						</Avatar.Root>
+					</div>
 				</BlurFade>
 			</div>
 		</div>
@@ -200,7 +264,7 @@
 					>
 						Want to chat? Just shoot me a dm
 						<a href={DATA.contact.social.X.url} class="text-blue-500 hover:underline">
-							with a direct question on twitter
+							with a direct question on BSky!
 						</a>
 						and I&apos;ll respond whenever I can. I will ignore all soliciting.
 					</p>
