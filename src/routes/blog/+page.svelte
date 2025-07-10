@@ -5,41 +5,53 @@
 	import { DATA } from '$lib/data/resume';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import { gsap } from 'gsap';
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount, onDestroy, tick } from 'svelte';
 	import { beforeNavigate, goto } from '$app/navigation';
 	import { avatarManager, avatarTransition } from '$lib/stores/avatarTransition';
 	import { browser } from '$app/environment';
 
 	export let data;
-	let BLUR_FADE_DELAY = 0.5;
 	
 	let avatarContainer;
 	let floatingTween;
-	let avatarVisible = false;
+	let avatarVisible = true;
+	let isTransitioningHere = false;
 	
-	onMount(() => {
+	// Subscribe to transition state
+	$: if ($avatarTransition.toRoute === '/blog' && $avatarTransition.isTransitioning) {
+		isTransitioningHere = true;
+		avatarVisible = false;
+	}
+	
+	onMount(async () => {
 		if (!browser) return;
+		
+		// Wait for DOM to be ready
+		await tick();
 		
 		// Register avatar with manager
 		if (avatarContainer) {
 			avatarManager.registerBlogAvatar(avatarContainer);
-		}
-		
-		// Check if we're coming from home
-		avatarTransition.subscribe(state => {
-			if (state.toRoute === '/blog' && state.isTransitioning) {
-				// Avatar is transitioning here
-				avatarVisible = false;
+			
+			// If we're transitioning here, wait for the animation to complete
+			if (isTransitioningHere) {
+				// Avatar starts hidden during transition
+				avatarContainer.style.opacity = '0';
+				
+				// Wait for transition to complete (should be handled by transition manager)
 				setTimeout(() => {
 					avatarVisible = true;
+					if (avatarContainer) {
+						avatarContainer.style.opacity = '1';
+					}
 					startFloatingAnimation();
 				}, 700);
 			} else {
-				// Direct page load
+				// Direct page load - show immediately and start animations
 				avatarVisible = true;
 				startFloatingAnimation();
 			}
-		});
+		}
 		
 		// Magnetic hover effect
 		const handleMouseMove = (e) => {
@@ -117,6 +129,8 @@
 		if (floatingTween) {
 			floatingTween.kill();
 		}
+		// Ensure avatar is visible if we're leaving the page without animation
+		avatarManager.ensureAvatarsVisible();
 	});
 	
 	function handleAvatarClick() {
@@ -144,11 +158,11 @@
 	<!-- Year Header with Avatar (QWER style) -->
 	<section class="year-header">
 		<div class="year-header-content">
-			<!-- Animated Avatar - no BlurFade -->
+			<!-- Animated Avatar - no BlurFade, renders immediately -->
 			<div 
 				bind:this={avatarContainer}
-				class="blog-avatar avatar-target {avatarVisible ? 'opacity-100' : 'opacity-0'}" 
-				style="transition: opacity 0.3s ease;"
+				class="blog-avatar avatar-target" 
+				style="opacity: {avatarVisible ? '1' : '0'}; transition: opacity 0.2s ease;"
 				data-avatar="blog"
 				on:click={handleAvatarClick}
 				role="button"
@@ -161,18 +175,23 @@
 				</Avatar.Root>
 			</div>
 			
-			<!-- Year Title -->
-			<BlurFade delay={BLUR_FADE_DELAY}>
+			<!-- Year Title with dramatic blur effect -->
+			<BlurFade delay={0.1} duration={0.8} blur="10px" yOffset={12}>
 				<h1 class="year-title">2024</h1>
 			</BlurFade>
 		</div>
 	</section>
 
-	<!-- Blog Posts Grid (QWER style) -->
+	<!-- Blog Posts Grid with cascading blur fade effect -->
 	<section class="blog-posts-grid">
 		{#if data?.posts && data.posts.length > 0}
 			{#each data.posts as post, id}
-				<BlurFade delay={BLUR_FADE_DELAY * 1.5 + id * 0.1}>
+				<BlurFade 
+					delay={0.2 + id * 0.08}
+					duration={0.6}
+					blur="8px"
+					yOffset={16}
+				>
 					<article class="post-card">
 						<a href="/blog/{post.slug}" class="post-link">
 							<!-- Cover Image -->
@@ -232,11 +251,13 @@
 				</BlurFade>
 			{/each}
 		{:else}
-			<div class="no-posts">
-				<p>No blog posts found.</p>
-			</div>
+			<BlurFade delay={0.3} duration={0.6} blur="6px">
+				<div class="no-posts">
+					<p>No blog posts found.</p>
+				</div>
+			</BlurFade>
 		{/if}
-	}</section>
+	</section>
 </main>
 
 <style>

@@ -1,33 +1,58 @@
-import type { PageServerLoad } from './$types';
-import { error } from '@sveltejs/kit';
+import { json, error } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
+import { readFile } from 'fs/promises';
+import { join } from 'path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
 
-export const load: PageServerLoad = async ({ params, fetch }) => {
-  console.log('Blog post server load called for slug:', params.slug);
+const POSTS_PATH = 'src/content/posts';
+
+export const GET: RequestHandler = async ({ params }) => {
+  const { slug } = params;
+  console.log('API /api/content/[slug] called for:', slug);
   
   try {
-    const { slug } = params;
+    // Read the markdown file
+    const postPath = join(POSTS_PATH, slug, 'index.md');
+    const fileContent = await readFile(postPath, 'utf-8');
     
-    // Fetch from our API route
-    const response = await fetch(`/api/content/${slug}`);
+    // Parse frontmatter and content
+    const { data, content } = matter(fileContent);
     
-    console.log('API response status:', response.status);
+    // Convert markdown to HTML
+    const htmlContent = marked(content);
     
-    if (!response.ok) {
-      console.error('API response not ok:', response.status, response.statusText);
-      throw error(404, `Post not found: ${slug}`);
+    // Extract categories from tags if not directly provided
+    let categories = data.categories || [];
+    if (!categories.length && data.tags) {
+      categories = data.tags.flat();
     }
     
-    const data = await response.json();
-    console.log('API response data:', data);
+    // Ensure date field exists
+    const date = data.date || data.published || new Date().toISOString();
     
-    return {
-      post: data.post,
-      meta: data.meta,
-      content: data.content, // For backward compatibility with your current post component
+    const post = {
+      slug,
+      title: data.title || 'Untitled',
+      description: data.description || data.summary || '',
+      summary: data.summary || data.description || '',
+      published: data.published || date,
+      updated: data.updated || data.published || date,
+      date: date.split('T')[0],
+      categories,
+      cover: data.cover,
+      coverStyle: data.coverStyle,
+      tags: data.tags
     };
     
+    return json({
+      post,
+      meta: data, // All frontmatter data
+      content: htmlContent // Rendered HTML content
+    });
+    
   } catch (err) {
-    console.error('Error in blog post server load:', err);
-    throw error(404, 'Post not found');
+    console.error(`Error loading post ${slug}:`, err);
+    throw error(404, `Post not found: ${slug}`);
   }
 };
