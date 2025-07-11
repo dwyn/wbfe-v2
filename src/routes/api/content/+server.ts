@@ -4,7 +4,8 @@ import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import matter from 'gray-matter';
 
-const POSTS_PATH = 'src/content/posts';
+// Use process.cwd() to get the correct base path
+const POSTS_PATH = join(process.cwd(), 'src/content/posts');
 
 interface PostMetadata {
   title: string;
@@ -25,10 +26,13 @@ export const GET: RequestHandler = async () => {
   try {
     // Read all directories in the posts folder
     const postDirs = await readdir(POSTS_PATH);
-    console.log('Found post directories:', postDirs);
+    
+    // Filter out system files and non-directories
+    const validDirs = postDirs.filter(dir => !dir.startsWith('.'));
+    console.log('Found post directories:', validDirs);
     
     const posts = await Promise.all(
-      postDirs.map(async (slug) => {
+      validDirs.map(async (slug) => {
         try {
           // Try to read index.md file in each post directory
           const postPath = join(POSTS_PATH, slug, 'index.md');

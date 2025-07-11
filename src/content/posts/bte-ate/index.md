@@ -4,7 +4,6 @@ description: I don't know about this Jesus guy... but I know the internet.
 summary: "Rethinking Historical Markers"
 published: '2024-07-25T00:00:00.000-05:00'
 updated: '2024-07-25T00:00:00.000-05:00'
-cover: './cover.png'
 coverStyle: 'TOP'
 tags:
   - ['SvelteKit', 'Web Development']
