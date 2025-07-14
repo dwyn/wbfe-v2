@@ -2,11 +2,12 @@
 title: Before the Internet | After the Internet
 description: I don't know about this Jesus guy... but I know the internet. 
 summary: "Rethinking Historical Markers"
-published: '2024-07-25T00:00:00.000-05:00'
-updated: '2024-07-25T00:00:00.000-05:00'
+published: '2025-01-05T00:00:00.000-05:00'
+updated: '2025-01-05T00:00:00.000-05:00'
+cover: './cover.jpg'
 coverStyle: 'TOP'
 tags:
-  - ['SvelteKit', 'Web Development']
+  - ['SvelteKit', 'Web Development', 'The Internet', 'WorldWideWeb', 'Rant']
   - ['Svelte', 'Frontend']
 ---
 

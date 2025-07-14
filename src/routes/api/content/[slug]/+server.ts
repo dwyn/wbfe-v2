@@ -45,6 +45,14 @@ export const GET: RequestHandler = async ({ params }) => {
     // Ensure date field exists
     const date = data.date || data.published || new Date().toISOString();
     
+    // Process cover image path
+    let coverPath = data.cover;
+    if (coverPath && coverPath.startsWith('./')) {
+      // Convert relative path to absolute path
+      // ./cover.png becomes /blog-content/[slug]/cover.png
+      coverPath = `/blog-content/${slug}/${coverPath.substring(2)}`;
+    }
+    
     const post = {
       slug,
       title: data.title || 'Untitled',
@@ -54,7 +62,7 @@ export const GET: RequestHandler = async ({ params }) => {
       updated: data.updated || data.published || date,
       date: date.split('T')[0],
       categories,
-      cover: data.cover,
+      cover: coverPath,
       coverStyle: data.coverStyle,
       tags: data.tags
     };

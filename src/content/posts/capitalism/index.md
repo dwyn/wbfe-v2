@@ -1,8 +1,14 @@
 ---
 title: "Capitalism"
-publishedAt: "2024-03-04"
-summary: "Its more than an economic and political system, its also a disease"
-image: ""
+description: "Its more than an economic and political system, its also a disease"
+summary: 'Our version of Capitalism is actually cancer.'
+published: "2025-01-19T00:00:00.000-05:00"
+updated: "2025-01-19T00:00:00.000-05:00"
+cover: './cover.jpg'
+coverStyle: 'TOP'
+tags:
+  - ['SvelteKit', 'Web Development', 'The Internet', 'WorldWideWeb', 'Rant']
+  - ['Svelte', 'Frontend']
 ---
 
 Modern capitalism is a complex mechanism—part economic framework, part political ideology, and, in many ways, *something akin to a disease.* Like a virus, it can replicate and spread, influencing virtually every aspect of our lives. When you view capitalism from a **systems thinking** standpoint, you start noticing how it has quietly woven itself into societal structures, individual behaviors, and even our personal passions.

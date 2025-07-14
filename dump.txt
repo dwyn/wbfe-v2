@@ -1,0 +1,23 @@
+---
+# Required fields
+title: "Your Post Title"                    # The main title of the post
+
+# Recommended fields (at least one for description)
+description: "Brief description"             # Short description of the post
+summary: "Summary of the post"              # Alternative to description
+
+# Date fields (at least one recommended)
+published: '2024-07-25T00:00:00.000-05:00'  # ISO date when published
+updated: '2024-07-25T00:00:00.000-05:00'    # ISO date when last updated
+date: '2024-07-25'                          # Simple date format (YYYY-MM-DD)
+
+# Optional fields
+cover: './cover.png'                        # Cover image path (relative to post folder)
+coverStyle: 'TOP'                           # How to display the cover (TOP, CENTER, etc.)
+
+# Categories/Tags (optional)
+categories: ['Category1', 'Category2']       # Simple array of categories
+tags:                                       # Nested array format (your format)
+  - ['SvelteKit', 'Web Development']
+  - ['Svelte', 'Frontend']
+---

@@ -1,8 +1,14 @@
 ---
 title: "Eustress, Distress, & Z.P.D."
-publishedAt: "2024-02-26"
-summary: "Not all stress is bad stress."
-image: ""
+description: "Its more than an economic and political system, its also a disease"
+summary: 'Not all stress is bad stress.'
+published: "2025-02-02T00:00:00.000-05:00"
+updated: "2025-02-02T00:00:00.000-05:00"
+cover: './eustress-v-distress.jpg'
+coverStyle: 'TOP'
+tags:
+  - ['SvelteKit', 'Web Development', 'The Internet', 'WorldWideWeb', 'Rant']
+  - ['Svelte', 'Frontend']
 ---
 
 Have you ever found yourself in that sweet spot where you’re challenged enough to stay engaged, but not so overwhelmed that you feel like throwing in the towel? That subtle state of “good stress” is often called **eustress**, and it’s closely tied to your **Zone of Proximal Development (ZPD)**—the space in which we learn and grow most effectively. Let’s dig in!

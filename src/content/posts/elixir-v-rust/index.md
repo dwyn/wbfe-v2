@@ -1,8 +1,14 @@
 ---
 title: "Elixir v Rust"
-publishedAt: "2024-02-19"
-summary: "Notable differences; ¿pero por que no los dos?"
-image: "/media/table-of-languages.jpg"
+description: "Notable differences; ¿pero por que no los dos?"
+summary: 'Languages are simply tools. What are you attempting to build?'
+published: "2025-01-26T00:00:00.000-05:00"
+updated: "2025-01-26T00:00:00.000-05:00"
+cover: './elixir-vs-rust.png'
+coverStyle: 'TOP'
+tags:
+  - ['SvelteKit', 'Web Development', 'The Internet', 'WorldWideWeb', 'Elixir', 'Rust']
+  - ['Svelte', 'Frontend']
 ---
 
 ## Introduction

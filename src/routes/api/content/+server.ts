@@ -52,6 +52,13 @@ export const GET: RequestHandler = async () => {
           // Ensure date field exists for compatibility
           const date = metadata.date || metadata.published || new Date().toISOString();
           
+          // Process cover image path
+          let coverPath = metadata.cover;
+          if (coverPath && coverPath.startsWith('./')) {
+            // Convert relative path to absolute path
+            coverPath = `/blog-content/${slug}/${coverPath.substring(2)}`;
+          }
+          
           return {
             slug,
             title: metadata.title || 'Untitled',
@@ -61,7 +68,7 @@ export const GET: RequestHandler = async () => {
             updated: metadata.updated || metadata.published || date,
             date: date.split('T')[0], // Format as YYYY-MM-DD for compatibility
             categories,
-            cover: metadata.cover,
+            cover: coverPath,
             coverStyle: metadata.coverStyle,
             tags: metadata.tags
           };

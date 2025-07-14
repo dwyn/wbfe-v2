@@ -1,11 +1,14 @@
 ---
-title: "Vite v Next.js"
-publishedAt: "2024-02-05"
+title: "Vite v Next.js: A Comparative Dive"
+description: "A personal comparison of Vite and Next.js, exploring why Vite's speed, simplicity, and flexibility have won me over."
 summary: "Spoiler: I ♡ Vite"
-image: ""
+published: "2025-02-23T00:00:00.000-05:00"
+updated: "2025-02-23T00:00:00.000-05:00"
+cover: './cover.png'
+coverStyle: 'TOP'
+tags:
+  - ['Web Development', 'The Internet', 'WorldWideWeb', 'Rant']
 ---
-
-# Vite vs Next.js: A Comparative Dive
 
 Hi there! 👋
 

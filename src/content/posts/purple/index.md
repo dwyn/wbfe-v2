@@ -1,9 +1,15 @@
 ---
 title: "Purple == 404"
-publishedAt: "2024-02-12"
+description: ""
 summary: "Purple != Violet"
-image: "/media/purple-violet.svg"
+published: "2025-02-09T00:00:00.000-05:00"
+updated: "2025-02-09T00:00:00.000-05:00"
+cover: './purple-violet.svg'
+coverStyle: 'TOP'
+tags:
+  - ['The Internet', 'WorldWideWeb', 'Rant', 'Humans amirite?']
 ---
+
 
 ## Introduction
 
