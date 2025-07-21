@@ -1,13 +1,19 @@
 ---
 title: "Form Shooting and Biomechanics"
-publishedAt: "2024-02-12"
-summary: "Purple != Violet"
-image: "/media/purple-violet.svg"
+description: ""
+summary: 'The Building Blocks of Shooting!'
+published: "2025-03-02T00:00:00.000-05:00"
+updated: "2025-03-02T00:00:00.000-05:00"
+cover: './formshooting.jpg'
+coverStyle: 'TOP'
+tags:
+  - ['Basketball', 'The Internet', 'WorldWideWeb', 'Rant']
+  - ['Svelte', 'Frontend']
 ---
 
 ## 1. Introduction
 
-Hi Noah, August, Iggy! I hope this finds you well. Below is my favorite shooting drill. My basketball coach taught me this drill and shooting mindset a loooong time ago. Form shooting has completely transformed the way I think about shooting a basketball, as well as  greatly improved my shooting and approach to shooting.
+Hi Noah, August! I hope this finds you well. Below is my favorite shooting drill. My basketball coach taught me this drill and shooting mindset a loooong time ago. Form shooting has completely transformed the way I think about shooting a basketball, as well as  greatly improved my shooting and approach to shooting.
 
 
 ## 2. Ball Preparation
