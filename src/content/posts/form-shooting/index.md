@@ -13,18 +13,18 @@ tags:
 
 ## 1. Introduction
 
-Hi Noah, August! I hope this finds you well. Below is my favorite shooting drill. My basketball coach taught me this drill and shooting mindset a loooong time ago. Form shooting has completely transformed the way I think about shooting a basketball, as well as  greatly improved my shooting and approach to shooting.
+Hi Noah, August! I hope this finds you well. Below is my favorite shooting drill. My basketball coach taught me this drill and shooting mindset a loooong time ago. Form shooting has not only improved my shooting, it has completely transformed the way I think about shooting a basketball.****
 
 
 ## 2. Ball Preparation
-First we need to draw a line down the center of the ball.  I find it easiest to use a rubber band large enough to stretch around the basketball of your choice. There are different basketball sizes make sure to find the size that works best for the basketball you want to use. 
+First we need to draw a line down the center of the ball.  I find it easiest to use a rubber band large enough to stretch around the basketball of your choice. There are different basketball sizes make sure to find the size that works best for the basketball you want to use.
 
 Start by finding the air hole on the ball - use that as a guide. Your center line needs to be perpendicular to the existing grooves on the ball.
 
 ## 3. Positioning on the basketball court
 - Imagine a line going from one block, to the next. [I've gone as far as drawing the line with chalk, or using a piece of tape.]
 
-![basketball halfcourt blocks line](./public/media/halfcourt-blocks-line.png)
+![basketball halfcourt blocks line](./halfcourt-blocks-line.png)
 
 ## 4. Positioning Yourself
 - Toesies: If you are shooting with your right hand, put your right toe on the line. [Flip it if you are left handed]
